@@ -5,7 +5,7 @@ import { observer } from "mobx-react-lite"
 import { color, spacing } from "../../../theme"
 import { NavigatorParamList } from "../../../navigators"
 import { useStores } from "../../../models"
-import { GradientBackground, Header, Screen } from "../../../components"
+import { GradientBackground, Header, Screen, Spinner } from "../../../components"
 import { PokemonItem } from "../../../components/pokemon-item/pokemon-item"
 
 const FULL: ViewStyle = {
@@ -66,17 +66,19 @@ export const PokedexScreen: FC<StackScreenProps<NavigatorParamList, "pokedex">> 
             titleStyle={HEADER_TITLE}
           />
           <FlatList
-          ItemSeparatorComponent={() => (
-            <View style={ITEM_SEPARATOR} />
-          )}
+            ItemSeparatorComponent={() => (
+              <View style={ITEM_SEPARATOR} />
+            )}
+            ListFooterComponent={<Spinner />}
             contentContainerStyle={FLAT_LIST}
             data={[...results]}
-            keyExtractor={(item, index) => String(index)}
+            keyExtractor={(item) => item.getId}
             onEndReached={getPokemons}
             onEndReachedThreshold={0.4}
             renderItem={({ item }) => (
               <PokemonItem pokemonItem={item} onPokemonClick={onNextScreen} />
             )}
+            removeClippedSubviews
           />
         </Screen>
       </View>

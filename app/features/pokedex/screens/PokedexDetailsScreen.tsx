@@ -45,19 +45,19 @@ const DETAILS_TEXT: TextStyle = {
 }
 
 export const PokedexDetailsScreen: FC<StackScreenProps<NavigatorParamList, "pokedexDetails">> = observer(
-  ({ navigation, route = {} }) => {
+  ({ navigation, route }) => {
 
     const { pokemonStore } = useStores()
     const { getName, getHeight, getBaseExperience, getWeight, getImageUrl} = pokemonStore
     const goBack = () => navigation.goBack()
-    const {params} = route;
+    const { pokemonId } = route.params;
 
     useEffect(() => {
       async function fetchData() {
-        await pokemonStore.getPokemonDetailsAction(params && params.pokemonId)
+        await pokemonStore.getPokemonDetailsAction(pokemonId)
       }
       fetchData()
-    }, [params])
+    }, [route])
 
     return (
       <View style={FULL}>

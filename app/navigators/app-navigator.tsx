@@ -26,7 +26,7 @@ import { PokedexDetailsScreen } from "../features/pokedex/screens/PokedexDetails
  */
 export type NavigatorParamList = {
   pokedex: undefined
-  pokedexDetails: undefined
+  pokedexDetails: {pokemonId: string}
   welcome: undefined
   demo: undefined
   demoList: undefined
@@ -44,7 +44,7 @@ const AppStack = () => {
       initialRouteName="pokedex"
     >
       <Stack.Screen name="pokedex" component={PokedexScreen} />
-      <Stack.Screen name="pokedexDetails" component={PokedexDetailsScreen} />
+      <Stack.Screen name="pokedexDetails" component={PokedexDetailsScreen}  />
     </Stack.Navigator>
   )
 }
