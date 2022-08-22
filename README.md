@@ -14,6 +14,18 @@ To get started please, follow: <https://reactnative.dev/docs/environment-setup>
 
 5. To run test enter: `yarn test`
 
+### To open view details page directly(Deep link), please use following command terminal or browser
+
+- To open the pokedex app:
+  - iOS: `npx uri-scheme open pokedex:// --ios`
+  - Android: `adb shell am start -W -a android.intent.action.VIEW -d "pokedex://"`
+  
+- To open pokemon specific character details. For example to open 'ditto':
+  - iOS: `npx uri-scheme open pokedex://pokedexDetails/ditto --ios`
+  - Android: `adb shell am start -W -a android.intent.action.VIEW -d "pokedex://pokedexDetails/ditto" --android`
+
+ Likewise, we can pass any character name through this url and open the details of that.
+
 ## Pokedex project structure
 
 ```
